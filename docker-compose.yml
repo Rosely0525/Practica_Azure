@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    container_name: contenedor_backend
+    ports:
+      - "5000:3000"
+    networks:
+      - red-practica
+
+  frontend:
+    build: ./frontend
+    container_name: contenedor_frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - red-practica
+
+networks:
+  red-practica:
+    driver: bridge
